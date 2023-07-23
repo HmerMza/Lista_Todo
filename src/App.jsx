@@ -1,73 +1,32 @@
-import CrossIcon from "./assets/components/icons/CrossIcon";
-import Luna from "./assets/components/icons/Luna";
+import { useState } from "react";
+import CompButtons from "./assets/components/CompButtons";
+import CompFooter from "./assets/components/CompFooter";
+import CompHeader from "./assets/components/CompHeader";
+import CompTodoCalculos from "./assets/components/CompTodoCalculos";
+import CompTodoForm from "./assets/components/CompTodoForm";
+import CompTodoList from "./assets/components/CompTodoList";
+const initialStateTodos = [
+    { id: 1, title: "go to the gym", completed: true },
+    {
+        id: 2,
+        title: "Complete online JavaScript curse",
+        completed: false,
+    },
+    { id: 3, title: "Read for 1 hour" },
+];
 const App = () => {
+    const [todos, setTodos] = useState(initialStateTodos);
     return (
-        <div className="bg-[url(./assets/images/bg-mobile-light.jpg)]   bg-no-repeat bg-gray-200 min-h-screen">
-            <header className="container mx-auto px-4 pt-8">
-                <div className="flex justify-between">
-                    <h1 className="uppercase text-white text-2xl font-semibold tracking-[0.3em]">
-                        Todo
-                    </h1>
-                    <button>
-                        <Luna />
-                    </button>
-                </div>
-                <form className="bg-white rounded-md overflow-hidden py-3 flex gap-4 items-center px-4 mt-8">
-                    <button className="rounded-full border-2 w-5 h-5 inline-block flex-none"></button>
-                    <input
-                        placeholder="create a new todo"
-                        type="text"
-                        className="w-full text-gray-400 outline-none"
-                    />
-                </form>
-            </header>
+        <div className="bg-[url(./assets/images/bg-mobile-light.jpg)] bg-contain   bg-no-repeat bg-gray-200 min-h-screen">
+            <CompHeader />
+
             <main className="container mx-auto px-4 mt-8 ">
-                <div className="bg-white rounded-md">
-                    <article className="flex gap-4 p-4 border-b">
-                        <button className="rounded-full border-2 w-5 h-5 inline-block flex-none" />
-                        <p className="grow text-gray-600">
-                            Complete online JavaScript curse in Bluuweb
-                        </p>
-                        <button className="flex-none">
-                            <CrossIcon />
-                        </button>
-                    </article>
-                    <article className="flex gap-4 p-4 border-b ">
-                        <button className="rounded-full border-2 w-5 h-5 inline-block flex-none" />
-                        <p className="grow text-gray-600">
-                            Complete online JavaScript curse in Bluuweb
-                        </p>
-                        <button className="flex-none">
-                            <CrossIcon />
-                        </button>
-                    </article>
-                    <article className="flex gap-4 p-4 border-b">
-                        <button className="rounded-full border-2 w-5 h-5 inline-block flex-none" />
-                        <p className="grow text-gray-600">
-                            Complete online JavaScript curse in Bluuweb
-                        </p>
-                        <button className="flex-none">
-                            <CrossIcon />
-                        </button>
-                    </article>
-                    <section className="p-4 flex justify-between">
-                        <span className="text-gray-400 ">3 items left</span>
-                        <button className="text-gray-400">
-                            clear completed
-                        </button>
-                    </section>
-                </div>
+                <CompTodoForm />
+                <CompTodoList todos={todos} />
+                <CompTodoCalculos />
+                <CompButtons />
             </main>
-            <section className="container mx-auto px-4  ">
-                <div className="mt-8 p-4 flex justify-center gap-4 bg-white rounded-md">
-                    <button className="hover:text-blue-600">All</button>
-                    <button className="hover:text-blue-600">Active</button>
-                    <button className="hover:text-blue-600">Completed</button>
-                </div>
-            </section>
-            <section className="text-center mt-8 rounded-md">
-                Drag and Drop
-            </section>
+            <CompFooter />
         </div>
     );
 };
