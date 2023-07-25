@@ -1,12 +1,21 @@
 import PropTypes from "prop-types";
 import CrossIcon from "./icons/CrossIcon";
-const CompTodoList = ({ todos }) => {
+import Complete from "./icons/Complete";
+const CompTodoList = ({ todos, updateTodo, removeTodo }) => {
     return (
         <div className="bg-white rounded-t-md mt-8">
             {todos.map((todo) => {
                 return (
                     <article className="flex gap-4 p-4 border-b" key={todo.id}>
-                        <button className="rounded-full border-2 w-5 h-5 inline-block flex-none" />
+                        <button
+                            className={`rounded-full border-2 w-5 h-5 flex-none ${
+                                todo.completed &&
+                                "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex justify-center items-center"
+                            }`}
+                            onClick={() => updateTodo(todo.id)}
+                        >
+                            {todo.completed && <Complete />}
+                        </button>
                         <p
                             className={`grow text-gray-600 ${
                                 todo.completed && "line-through"
@@ -14,7 +23,10 @@ const CompTodoList = ({ todos }) => {
                         >
                             {todo.title}
                         </p>
-                        <button className="flex-none">
+                        <button
+                            className="flex-none"
+                            onClick={() => removeTodo(todo.id)}
+                        >
                             <CrossIcon />
                         </button>
                     </article>
@@ -25,6 +37,8 @@ const CompTodoList = ({ todos }) => {
 };
 CompTodoList.propTypes = {
     todos: PropTypes.array.isRequired,
+    updateTodo: PropTypes.func.isRequired,
+    removeTodo: PropTypes.func.isRequired,
 };
 
 export default CompTodoList;
