@@ -18,6 +18,7 @@ const initialStateTodos = [
 ];
 const App = () => {
     const [todos, setTodos] = useState(initialStateTodos);
+    //Para Crear un Nuevo Todo
     const createTodo = (title) => {
         const newTodo = {
             id: todos.length + 1,
@@ -26,21 +27,34 @@ const App = () => {
         };
         setTodos([...todos, newTodo]);
     };
-    //Actualizar
+    //Actualizar o Cambiar su estado a falso o verdadero
     const updateTodo = (id) => {
         setTodos(
             todos.map((todo) =>
+                //recorre el array, cuando encuentra el todo con el mismo id, crea una copia exacta de ese todo, pero invierte su estado
                 todo.id === id ? { ...todo, completed: !todo.completed } : todo
             )
         );
     };
-    //Eliminar todos
+    //Eliminar todos, busca su id y el nuevo array lo pasa a la funcion encargada de modificar los todos
     const removeTodo = (id) => {
         setTodos(todos.filter((todo) => todo.id !== id));
     };
-    //Eliminar Todo Completados
+    //Eliminar Todo Completados,eliminara los todos que tengan su estado en true
     const removeTCompleted = () => {
         setTodos(todos.filter((todo) => todo.completed !== true));
+    };
+
+    const [filter, setFilter] = useState("all");
+    //este metodo filtrara y retornara un nuevo array sin destruir el original
+    const filtroTodos = () => {
+        if (filter === "all") {
+            return todos;
+        } else if (filter === "active") {
+            return todos.filter((todo) => !todo.completed);
+        } else if (filter === "completed") {
+            return todos.filter((todo) => todo.completed);
+        }
     };
 
     return (
@@ -50,7 +64,7 @@ const App = () => {
             <main className="container mx-auto px-4 mt-8 ">
                 <CompTodoForm createTodo={createTodo} />
                 <CompTodoList
-                    todos={todos}
+                    todos={filtroTodos()}
                     updateTodo={updateTodo}
                     removeTodo={removeTodo}
                 />
@@ -58,7 +72,7 @@ const App = () => {
                     todos={todos}
                     removeTCompleted={removeTCompleted}
                 />
-                <CompButtons />
+                <CompButtons setFilter={setFilter} filter={filter} />
             </main>
             <CompFooter />
         </div>
