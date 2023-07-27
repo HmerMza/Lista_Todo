@@ -3,12 +3,15 @@ import CrossIcon from "./icons/CrossIcon";
 import Complete from "./icons/Complete";
 const CompTodoList = ({ todos, updateTodo, removeTodo }) => {
     return (
-        <div className="bg-white rounded-t-md mt-8">
+        <div className="bg-white rounded-t-md mt-8  dark:bg-Very-Dark-Desatured ">
             {todos.map((todo) => {
                 return (
-                    <article className="flex gap-4 p-4 border-b" key={todo.id}>
+                    <article
+                        className="flex gap-4 p-4 border-b dark:border-gray-700"
+                        key={todo.id}
+                    >
                         <button
-                            className={`rounded-full border-2 w-5 h-5 flex-none ${
+                            className={`rounded-full border w-5 h-5 flex-none dark:border-gray-700 ${
                                 todo.completed &&
                                 "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex justify-center items-center"
                             }`}
@@ -17,7 +20,7 @@ const CompTodoList = ({ todos, updateTodo, removeTodo }) => {
                             {todo.completed && <Complete />}
                         </button>
                         <p
-                            className={`grow text-gray-600 ${
+                            className={`grow text-gray-600 dark:text-gray-400 ${
                                 todo.completed && "line-through"
                             }`}
                         >

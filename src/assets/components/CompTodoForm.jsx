@@ -13,13 +13,13 @@ const CompTodoForm = ({ createTodo }) => {
     return (
         <form
             onSubmit={handleSubmitAddTodo}
-            className="bg-white rounded-md overflow-hidden py-3 flex gap-4 items-center px-4 mt-8"
+            className="bg-white rounded-md overflow-hidden py-3 flex gap-4 items-center px-4 mt-8 dark:bg-Very-Dark-Desatured"
         >
-            <button className="rounded-full border-2 w-5 h-5 inline-block flex-none"></button>
+            <button className="rounded-full border w-5 h-5 inline-block flex-none dark:border-gray-700"></button>
             <input
                 placeholder="create a new todo"
                 type="text"
-                className="w-full text-gray-400 outline-none"
+                className="w-full text-gray-400 outline-none dark:bg-Very-Dark-Desatured"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />

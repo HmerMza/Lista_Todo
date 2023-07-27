@@ -3,7 +3,7 @@ const CompTodoCalculos = ({ todos, removeTCompleted }) => {
     const total = todos.filter((todo) => !todo.completed).length;
 
     return (
-        <section className="p-4 flex justify-between bg-white rounded-b-md">
+        <section className="p-4 flex justify-between bg-white rounded-b-md dark:bg-Very-Dark-Desatured">
             <span className="text-gray-400 ">{total} items left</span>
             <button className="text-gray-400" onClick={removeTCompleted}>
                 clear completed

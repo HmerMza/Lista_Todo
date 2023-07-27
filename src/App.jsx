@@ -58,9 +58,8 @@ const App = () => {
     };
 
     return (
-        <div className="bg-[url(./assets/images/bg-mobile-light.jpg)] bg-contain   bg-no-repeat bg-gray-200 min-h-screen">
+        <div className="bg-[url(./assets/images/bg-mobile-light.jpg)] dark:bg-[url(./assets/images/bg-mobile-dark.jpg)] bg-contain   bg-no-repeat bg-gray-200 min-h-screen dark:bg-Very-Dark-Blue">
             <CompHeader />
-
             <main className="container mx-auto px-4 mt-8 ">
                 <CompTodoForm createTodo={createTodo} />
                 <CompTodoList
