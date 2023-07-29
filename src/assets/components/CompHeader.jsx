@@ -7,7 +7,7 @@ const inicialStateDarkMode = localStorage.getItem("theme") === "dark";
 const CompHeader = () => {
     //paso el valor inicializado
     const [darkMode, setDarkMode] = useState(inicialStateDarkMode);
-    //creo el useEffect para estar pendiente si existe o no cambios en el darkMode
+    //creo el useEffect para estar pendiente si existe o no cambios en el darkMode, cuando presionamos el boton
     useEffect(() => {
         //en caso de ser verdadero
         if (darkMode) {

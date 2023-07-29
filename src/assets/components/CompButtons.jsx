@@ -2,7 +2,7 @@ const CompButtons = ({ setFilter, filter }) => {
     return (
         <div>
             <section className="container mx-auto px-1 ">
-                <div className="mt-8 p-4 flex justify-center gap-4 bg-white rounded-md dark:bg-Very-Dark-Desatured">
+                <div className="mt-8 p-4 flex justify-center gap-4 bg-white rounded-md dark:bg-Very-Dark-Desatured duration-1000">
                     <button
                         className={`${
                             filter === "all"
