@@ -1,27 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CompButtons from "./assets/components/CompButtons";
 import CompFooter from "./assets/components/CompFooter";
 import CompHeader from "./assets/components/CompHeader";
 import CompTodoCalculos from "./assets/components/CompTodoCalculos";
 import CompTodoForm from "./assets/components/CompTodoForm";
 import CompTodoList from "./assets/components/CompTodoList";
+import { v4 as uuidv4 } from "uuid";
 
-const initialStateTodos = [
-    { id: 1, title: "go to the gym", completed: true },
-    {
-        id: 2,
-        title: "Complete online JavaScript curse",
-        completed: false,
-    },
-    { id: 3, title: "Read for 1 hour", completed: false },
-    { id: 4, title: "Create Linkeind", completed: true },
-];
+const initialStateTodos = JSON.parse(localStorage.getItem("todos")) || [];
 const App = () => {
     const [todos, setTodos] = useState(initialStateTodos);
+    //para estar atento a cualquier cambio e los todos
+    useEffect(() => {
+        //guardo el el local storage en formato Json los Todos, como un string
+        // los todos son las llaves, lo que sigue es lo que guardamos
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }, [todos]);
     //Para Crear un Nuevo Todo
     const createTodo = (title) => {
         const newTodo = {
-            id: todos.length + 1,
+            id: uuidv4(),
             title,
             completed: false,
         };
@@ -58,9 +56,9 @@ const App = () => {
     };
 
     return (
-        <div className="bg-[url(./assets/images/bg-mobile-light.jpg)] dark:bg-[url(./assets/images/bg-mobile-dark.jpg)]  bg-contain   bg-no-repeat bg-gray-200 min-h-screen duration-1000 dark:bg-Very-Dark-Blue ">
+        <div className="bg-[url(./assets/images/bg-mobile-light.jpg)] dark:bg-[url(./assets/images/bg-mobile-dark.jpg)]  bg-contain   bg-no-repeat bg-gray-200 min-h-screen duration-1000 dark:bg-Very-Dark-Blue md:bg-[url(./assets/images/bg-desktop-light.jpg)] md:dark:bg-[url(./assets/images/bg-desktop-dark.jpg)]">
             <CompHeader />
-            <main className="container mx-auto px-4 mt-8 ">
+            <main className="container mx-auto px-4 mt-8 md:max-w-xl">
                 <CompTodoForm createTodo={createTodo} />
                 <CompTodoList
                     todos={filtroTodos()}
