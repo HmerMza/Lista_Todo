@@ -67,18 +67,15 @@ const App = () => {
 
     //para los efectos de drag and drop
     const handleDragEnd = (result) => {
-        const { destination, source } = result;
-        //en caso de que lo muevan horizonalmente
-        if (!destination) return;
-        //en caso de que solo lo muevan en la pantalla y lo dejen en el mismo sitio
-        if (
-            source.index === destination.index &&
-            source.droppableId === destination.droppableId
-        )
-            return;
-        setTodos((prevTasks) =>
-            reorder(prevTasks, source.index, destination.index)
-        );
+        if (!result.destination) return;
+
+        const startIndex = result.source.index;
+        const endIndex = result.destination.index;
+        const reorderedTodos = Array.from(todos);
+        const [reorderedItem] = reorderedTodos.splice(startIndex, 1);
+        reorderedTodos.splice(endIndex, 0, reorderedItem);
+
+        setTodos(reorderedTodos);
     };
 
     return (

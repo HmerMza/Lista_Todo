@@ -5,6 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        'custom-gradient': 'linear-gradient(90deg, #6366F1, #A855F7, #EC4899)',
         'Very-Dark-Blue': 'hsl(235, 21%, 11%)',
         'Very-Dark-Desatured': 'hsl(235, 24%, 19%)',
       },
